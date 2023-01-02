@@ -14,19 +14,20 @@ Every close bracket has a corresponding open bracket of the same type.
 class Solution:
     def isValid(self, s: str) -> bool:
         brackets = {
-            '}': '{',
             ')': '(',
+            '}': '{',
             ']': '[',
         }
         stack = []
-
+        
         for char in s:
-            if char == '{' or char == '(' or char == '[':
-                stack.append(char)
-            elif char == '}' or char == ')' or char == ']':
+            if char in brackets:
                 if not stack:
                     return False
                 cur_char = stack.pop()
                 if cur_char != brackets[char]:
                     return False
+            else: 
+                stack.append(char)
+
         return not stack
