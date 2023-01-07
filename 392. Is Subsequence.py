@@ -11,11 +11,24 @@ the characters without disturbing the relative positions of the remaining charac
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
         idx_1, idx_2 = 0, 0
-        cnt = 0
         while idx_2 < len(t) and idx_1 < len(s):
             if s[idx_1] == t[idx_2]:
                 idx_1 += 1
-                cnt += 1
             idx_2 += 1
 
-        return cnt == len(s)
+        return idx_1 == len(s)
+
+
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        if len(s) > len(t):
+            return False
+
+        idx_s = 0
+        for idx_t in range(0, len(t)):
+            if idx_s >= len(s):
+                return True
+            if s[idx_s] == t[idx_t]:
+                idx_s += 1
+
+        return idx_s == len(s)
